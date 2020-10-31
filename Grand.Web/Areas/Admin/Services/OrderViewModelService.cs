@@ -21,6 +21,8 @@ using Grand.Services.Media;
 using Grand.Services.Messages;
 using Grand.Services.Orders;
 using Grand.Services.Payments;
+using Grand.Services.Queries.Models;
+using Grand.Services.Queries.Models.Orders;
 using Grand.Services.Security;
 using Grand.Services.Shipping;
 using Grand.Services.Stores;
@@ -276,7 +278,7 @@ namespace Grand.Web.Areas.Admin.Services
 
             return model;
         }
-        public virtual async Task<(IEnumerable<OrderModel> orderModels, OrderAggreratorModel aggreratorModel, int totalCount)> PrepareOrderModel(OrderListModel model, int pageIndex, int pageSize)
+        public virtual async Task<(IEnumerable<OrderModel> orderModels, OrderAggreratorModel aggreratorModel, int totalCount)> PrepareOrderModel(OrderListModel model, int pageIndex, int pageSize, List<SortModel> sort)
         {
             DateTime? startDateValue = (model.StartDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.StartDate.Value, _dateTimeHelper.CurrentTimeZone);
@@ -314,7 +316,8 @@ namespace Grand.Web.Areas.Admin.Services
                 orderCode: model.GoDirectlyToNumber,
                 pageIndex: pageIndex - 1,
                 pageSize: pageSize,
-                orderTagId: model.OrderTag);
+                orderTagId: model.OrderTag,
+                sort: sort);
 
             //summary report
             //currently we do not support productId and warehouseId parameters for this report

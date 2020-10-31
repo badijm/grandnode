@@ -2,6 +2,8 @@ using Grand.Domain;
 using Grand.Domain.Orders;
 using Grand.Domain.Payments;
 using Grand.Domain.Shipping;
+using Grand.Services.Queries.Models;
+using Grand.Services.Queries.Models.Orders;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -94,7 +96,7 @@ namespace Grand.Services.Orders
             DateTime? createdFromUtc = null, DateTime? createdToUtc = null,
             OrderStatus? os = null, PaymentStatus? ps = null, ShippingStatus? ss = null,
             string billingEmail = null, string billingLastName = "", string orderGuid = null,
-            string orderCode = null, int pageIndex = 0, int pageSize = int.MaxValue, string orderTagId = "");
+            string orderCode = null, int pageIndex = 0, int pageSize = int.MaxValue, string orderTagId = "", List<SortModel> sort = null);
         
         /// <summary>
         /// Inserts an order

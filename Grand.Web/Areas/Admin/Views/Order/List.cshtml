@@ -5,7 +5,7 @@
     ViewBag.Title = T("Admin.Orders").Text;
 }
 <form asp-area="@Constants.AreaAdmin" asp-controller="Order" asp-action="List" method="post">
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel light form-fit">
@@ -73,7 +73,7 @@
                                     <div class="input-group">
                                         <admin-input asp-for="GoDirectlyToNumber" />
                                         <input type="submit" name="go-to-order-by-number" id="gotoorderbynumber" class="input-group btn btn-default" value="@T("Admin.Common.Go")" />
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -276,6 +276,10 @@
                     serverPaging: true,
                     serverFiltering: true,
                     serverSorting: true
+                },
+                sortable: {
+                    mode: "multiple",
+                    initialDirection: "desc"
                 },
                 pageable: {
                     refresh: true,
@@ -557,7 +561,7 @@
 
 @*export selected (XML). We don't use GET approach because it's limited to 2K-4K chars and won't work for large number of entities*@
 <form asp-area="@Constants.AreaAdmin" asp-controller="Order" asp-action="ExportXmlSelected" method="post" id="export-xml-selected-form">
-    
+
     <input type="hidden" id="selectedIds" name="selectedIds" value="" />
 </form>
 
@@ -577,7 +581,7 @@
 
 @*export selected (Excel). We don't use GET approach because it's limited to 2K-4K chars and won't work for large number of entities*@
 <form asp-area="@Constants.AreaAdmin" asp-controller="Order" asp-action="ExportExcelSelected" method="post" id="export-excel-selected-form">
-    
+
     <input type="hidden" id="selectedIds" name="selectedIds" value="" />
 </form>
 <script>
@@ -595,8 +599,8 @@
 </script>
 
 @*Print packaging slips selected (XML). We don't use GET approach because it's limited to 2K-4K chars and won't work for large number of entities*@
-<form asp-area="@Constants.AreaAdmin" asp-controller="Order" asp-action="PdfInvoiceSelected" method="post" id="pdf-invoice-selected-form">    
-    
+<form asp-area="@Constants.AreaAdmin" asp-controller="Order" asp-action="PdfInvoiceSelected" method="post" id="pdf-invoice-selected-form">
+
     <input type="hidden" id="selectedIds" name="selectedIds" value="" />
 </form>
 

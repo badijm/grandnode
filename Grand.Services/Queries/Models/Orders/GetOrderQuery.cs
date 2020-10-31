@@ -4,6 +4,7 @@ using Grand.Domain.Shipping;
 using MediatR;
 using MongoDB.Driver.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace Grand.Services.Queries.Models.Orders
 {
@@ -31,5 +32,6 @@ namespace Grand.Services.Queries.Models.Orders
         public int PageIndex { get; set; } = 0;
         public int PageSize { get; set; } = int.MaxValue;
         public string OrderTagId { get; set; } = "";
+        public List<SortModel> Sort { get; set; }
     }
 }

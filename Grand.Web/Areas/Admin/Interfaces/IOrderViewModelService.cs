@@ -1,6 +1,8 @@
 ﻿using Grand.Domain.Catalog;
 using Grand.Domain.Common;
 using Grand.Domain.Orders;
+using Grand.Services.Queries.Models;
+using Grand.Services.Queries.Models.Orders;
 using Grand.Web.Areas.Admin.Models.Orders;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -12,7 +14,7 @@ namespace Grand.Web.Areas.Admin.Interfaces
     public interface IOrderViewModelService
     {
         Task<OrderListModel> PrepareOrderListModel(int? orderStatusId = null, int? paymentStatusId = null, int? shippingStatusId = null, DateTime? startDate = null, string storeId = null, string code = null);
-        Task<(IEnumerable<OrderModel> orderModels, OrderAggreratorModel aggreratorModel, int totalCount)> PrepareOrderModel(OrderListModel model, int pageIndex, int pageSize);
+        Task<(IEnumerable<OrderModel> orderModels, OrderAggreratorModel aggreratorModel, int totalCount)> PrepareOrderModel(OrderListModel model, int pageIndex, int pageSize, List<SortModel> sort);
         Task PrepareOrderDetailsModel(OrderModel model, Order order);
         Task<OrderModel.AddOrderProductModel> PrepareAddOrderProductModel(Order order);
         Task<OrderModel.AddOrderProductModel.ProductDetailsModel> PrepareAddProductToOrderModel(Order order, string productId);

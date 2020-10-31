@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Grand.Services.Commands.Models.Orders;
+using Grand.Services.Queries.Models;
 
 namespace Grand.Services.Orders
 {
@@ -199,7 +200,7 @@ namespace Grand.Services.Orders
             DateTime? createdFromUtc = null, DateTime? createdToUtc = null,
             OrderStatus? os = null, PaymentStatus? ps = null, ShippingStatus? ss = null,
             string billingEmail = null, string billingLastName = "", string orderGuid = null,
-            string orderCode = null, int pageIndex = 0, int pageSize = int.MaxValue, string orderTagId = "")
+            string orderCode = null, int pageIndex = 0, int pageSize = int.MaxValue, string orderTagId = "", List<SortModel> sort = null)
         {
             var querymodel = new GetOrderQuery() {
                 AffiliateId = affiliateId,
@@ -222,7 +223,8 @@ namespace Grand.Services.Orders
                 VendorId = vendorId,
                 WarehouseId = warehouseId,
                 OrderTagId = orderTagId,
-                OwnerId = ownerId
+                OwnerId = ownerId,
+                Sort = sort
             };
             var query = await _mediator.Send(querymodel);
             return await PagedList<Order>.Create(query, pageIndex, pageSize);
